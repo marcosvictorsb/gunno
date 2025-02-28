@@ -2,7 +2,8 @@ import { ModelStatic } from "sequelize";
 import { ProjectEntity } from "../entities/project.entity";
 import ProjectModel from "../model/project.model";
 import { HttpResponse } from "../../../protocols/presenter";
-import logger from "config/logger";
+import logger from "../../../config/logger";
+import { ILoggerService } from "../../../services/logger.services";
 
 export type ProjectInput = {
   name: string,
@@ -44,9 +45,8 @@ export type ProjectGatewayDependencies = {
   logger: typeof logger
 }
 
-export interface IProjectGateway {
+export interface IProjectGateway extends ILoggerService {
   createProject(project: InsertCriteria): Promise<ProjectEntity>;
-  loggerInfo(message: string, data?: any): any;
 }
 
 export interface IProjectRepository {
