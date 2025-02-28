@@ -1,5 +1,4 @@
 import { IUserGateway } from '../interfaces/user.interface';
-import { UserEntity } from '../entities/user.entity';
 import { IPresenter } from '../../../protocols/presenter';
 import { HttpResponse } from '../../../protocols/http';
 
@@ -8,7 +7,6 @@ export class CreateUserUseCase {
 
   async execute(email: string, password: string): Promise<HttpResponse> {
     this.gateway.loggerInfo('Creating user', { email });
-
 
     const existingUser = await this.gateway.findUserByEmail(email);
     if (existingUser) {

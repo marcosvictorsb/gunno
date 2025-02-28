@@ -29,13 +29,11 @@ const gateway: UserGatewayParams = {
 
 const userGateway = new UserGateway(gateway);
 
-// Configuração do serviço
-// const userService = new UserService(userGateway);
 
 // Configuração dos use-cases
 const presenter = new Presenter();
 const createUserUseCase = new CreateUserUseCase(userGateway, presenter);
-// const getUsersUseCase = new GetUsersUseCase(userGateway);
+
 
 
 const userController = new UserController({ useCases: {createUser: createUserUseCase}});
@@ -44,8 +42,6 @@ const userController = new UserController({ useCases: {createUser: createUserUse
 export {
   userRepository,
   userGateway,
-  // userService,
   createUserUseCase,
   userController
-  // getUsersUseCase,
 };

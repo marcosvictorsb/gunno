@@ -9,7 +9,9 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "*": ["node_modules/*", "src/types/*"]
+      "*": ["node_modules/*", "src/types/*"],
+      "@domains/*": ["src/domains/*"],
+      "@infra/*": ["./src/infra/*"],
     }
   },
   "include": ["src/**/*.ts"],

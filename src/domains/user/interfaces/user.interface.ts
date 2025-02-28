@@ -34,7 +34,6 @@ export type UserGatewayParams = {
     token: IToken;
   },
   logger: typeof logger
-
 }
 
 export interface UserControllerParams {

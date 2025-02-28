@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "development",
-    "host": "mysql-boilerplate",
+    "password": "M@rcos123",
+    "database": "gunno",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

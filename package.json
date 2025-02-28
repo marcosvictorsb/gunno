@@ -15,7 +15,9 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "@config": "./src/config"
+    "@config": "./src/config",
+    "@domains": "./src/domains",
+    "@infra": "./src/infra/*"
   },
   "eslintIgnore": [
     "*.test.js"
