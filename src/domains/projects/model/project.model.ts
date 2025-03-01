@@ -44,6 +44,7 @@ ProjectModel.init(
     tableName: 'projects',
     timestamps: true,
     underscored: true,
+    paranoid: true,
   }
 );
 
