@@ -8,7 +8,11 @@ export class DeleteProjectUseCase {
   async execute(id: number): Promise<HttpResponse> {
     try {
       this.gateway.loggerInfo('Deleting project', { id });
-      await this.gateway.deleteProject(id);
+      const affectedRows = await this.gateway.deleteProject(id);
+      if (!affectedRows) {
+        this.gateway.loggerInfo('Não foi possivel deletar o projeto',{ id });
+        return this.presenter.conflict('Erro ao deletar projeto');
+      }
       return this.presenter.OK();  
     } catch (error) {
       this.gateway.loggerInfo('Erro ao deletar project');

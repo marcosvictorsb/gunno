@@ -50,7 +50,7 @@ export type ProjectGatewayDependencies = {
 export interface IProjectGateway extends ILoggerService {
   createProject(project: InsertCriteria): Promise<ProjectEntity>;
   getProjects(): Promise<ProjectEntity[]>;
-  deleteProject(id: number): Promise<void>;
+  deleteProject(id: number): Promise<boolean>;
 }
 
 export interface IProjectRepository {

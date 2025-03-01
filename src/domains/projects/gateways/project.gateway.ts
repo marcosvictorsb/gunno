@@ -20,7 +20,7 @@ export class ProjectGateway extends LoggerService implements IProjectGateway  {
     return this.projectRepository.findAll({});
   } 
 
-  async deleteProject(id: number): Promise<any> {
+  async deleteProject(id: number): Promise<boolean> {
     return this.projectRepository.delete(id);
   }
 }
