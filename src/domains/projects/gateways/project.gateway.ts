@@ -10,7 +10,7 @@ export class ProjectGateway extends LoggerService implements IProjectGateway  {
   constructor(params: ProjectGatewayDependencies) {
     super(params);
     this.projectRepository = params.repository;
-  }
+  }  
 
   async createProject(project: InsertCriteria): Promise<ProjectEntity> {
     return this.projectRepository.create(project);
@@ -19,4 +19,8 @@ export class ProjectGateway extends LoggerService implements IProjectGateway  {
   async getProjects(): Promise<ProjectEntity[]> {
     return this.projectRepository.findAll({});
   } 
+
+  async deleteProject(id: number): Promise<any> {
+    return this.projectRepository.delete(id);
+  }
 }

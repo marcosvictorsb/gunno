@@ -18,4 +18,10 @@ export class ProjectController {
     const result = await this.useCases.getProjects.execute();
     return response.status(result.status).json(result.body);   
   }
+
+  public async deleteProject(request: Request, response: Response): Promise<Response> {  
+    const { id } = request.params;
+    const result = await this.useCases.deleteProject.execute(Number(id));
+    return response.status(result.status).json(result.body);   
+  }
 }

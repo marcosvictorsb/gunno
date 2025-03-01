@@ -69,11 +69,11 @@ export class ProjectRepository implements IProjectRepository  {
     );
   }
 
-  public async update(criteria: UpdateCriteria, data: Partial<ProjectEntity>): Promise<ProjectEntity | null> {
-    const [affectedRows] = await this.model.update(data, { where: { id: criteria.id } });
+  public async update(id: number, data: Partial<ProjectEntity>): Promise<ProjectEntity | null> {
+    const [affectedRows] = await this.model.update(data, { where: { id } });
     if (affectedRows === 0) return null;
 
-    const updatedProject = await this.model.findByPk(criteria.id);
+    const updatedProject = await this.model.findByPk(id);
     if (!updatedProject) return null;
 
     return new ProjectEntity(
@@ -86,8 +86,8 @@ export class ProjectRepository implements IProjectRepository  {
     );
   }
 
-  public async delete(criteria: DeleteCriteria): Promise<boolean> {
-    const affectedRows = await this.model.destroy({ where: { id: criteria.id } });
+  public async delete(id: number): Promise<boolean> {
+    const affectedRows = await this.model.destroy({ where: { id } });
     return affectedRows > 0;
   }
 }

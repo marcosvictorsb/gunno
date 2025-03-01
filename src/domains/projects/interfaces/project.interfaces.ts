@@ -34,7 +34,8 @@ export type ProjectRepositoryDependencies = {
 
 export type ProjectUseCases = {
   createProject: { execute(project: InsertCriteria): Promise<HttpResponse> },
-  getProjects: { execute(): Promise<HttpResponse> }
+  getProjects: { execute(): Promise<HttpResponse> },
+  deleteProject: { execute(id: number): Promise<HttpResponse> }
 }
 
 export type ProjectControllerDependencies = {
@@ -49,12 +50,13 @@ export type ProjectGatewayDependencies = {
 export interface IProjectGateway extends ILoggerService {
   createProject(project: InsertCriteria): Promise<ProjectEntity>;
   getProjects(): Promise<ProjectEntity[]>;
+  deleteProject(id: number): Promise<void>;
 }
 
 export interface IProjectRepository {
   create(criteria: InsertCriteria): Promise<ProjectEntity>;
   find(criteria: FindCriteria): Promise<ProjectEntity | null>;
   findAll(criteria: FindCriteria): Promise<ProjectEntity[]>;
-  update(criteria: UpdateCriteria, data: Partial<ProjectEntity>): Promise<ProjectEntity | null>;
-  delete(criteria: DeleteCriteria): Promise<boolean>;
+  update(id: number, data: Partial<ProjectEntity>): Promise<ProjectEntity | null>;
+  delete(id: number): Promise<boolean>;
 }
