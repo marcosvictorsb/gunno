@@ -1,6 +1,6 @@
 import logger from '../../../config/logger';
 import { ProjectRepository } from '../repositories/project.repository';
-import { CreateProjectUseCase } from '../use-cases/create.project.usecase';
+import {CreateProjectUseCase, GetProjectsUseCase } from '../use-cases/';
 import ProjectModel from '../model/project.model';
 import { ProjectGatewayDependencies, ProjectUseCases } from '../interfaces/project.interfaces';
 import { ProjectController } from '../controller/project.controller';
@@ -25,9 +25,11 @@ const projectGateway = new ProjectGateway(gateway);
 // Configuração dos use-cases
 const presenter = new Presenter();
 const createUserUseCase = new CreateProjectUseCase(projectGateway, presenter);
+const getProjectsUseCase = new GetProjectsUseCase(projectGateway, presenter);
 
 const useCases: ProjectUseCases = {
-  createProject: createUserUseCase
+  createProject: createUserUseCase,
+  getProjects: getProjectsUseCase
 }
 const projectController = new ProjectController({useCases});
 

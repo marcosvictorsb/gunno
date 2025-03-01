@@ -15,4 +15,8 @@ export class ProjectGateway extends LoggerService implements IProjectGateway  {
   async createProject(project: InsertCriteria): Promise<ProjectEntity> {
     return this.projectRepository.create(project);
   } 
+
+  async getProjects(): Promise<ProjectEntity[]> {
+    return this.projectRepository.findAll({});
+  } 
 }

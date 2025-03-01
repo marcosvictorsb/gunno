@@ -34,6 +34,7 @@ export type ProjectRepositoryDependencies = {
 
 export type ProjectUseCases = {
   createProject: { execute(project: InsertCriteria): Promise<HttpResponse> },
+  getProjects: { execute(): Promise<HttpResponse> }
 }
 
 export type ProjectControllerDependencies = {
@@ -47,6 +48,7 @@ export type ProjectGatewayDependencies = {
 
 export interface IProjectGateway extends ILoggerService {
   createProject(project: InsertCriteria): Promise<ProjectEntity>;
+  getProjects(): Promise<ProjectEntity[]>;
 }
 
 export interface IProjectRepository {
