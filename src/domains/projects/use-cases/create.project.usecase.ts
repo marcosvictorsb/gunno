@@ -15,9 +15,9 @@ export class CreateProjectUseCase {
     const projectCreated = await this.gateway.createProject(payload);
     if(!projectCreated) {
       this.gateway.loggerInfo('Erro ao criar projeto');
-      return this.presenter.serverError('Erro ao criar projeto');
+      return this.presenter.conflict('Erro ao criar projeto');
     }
 
-    return this.presenter.OK();
+    return this.presenter.created();
   }
 }

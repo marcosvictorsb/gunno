@@ -20,12 +20,12 @@ export type HttpResponse = {
 
 export interface IPresenter {
   OK(response?: any): HttpResponse;
-  conflict(message: string): HttpResponse;
-  noContent(message: string): HttpResponse;
-  created(response: any): HttpResponse;
-  badRequest(response: any): HttpResponse;
-  notFound(response: any): HttpResponse;
-  serverError(error: any): HttpResponse;
+  conflict(message?: string): HttpResponse;
+  noContent(message?: string): HttpResponse;
+  created(response?: any): HttpResponse;
+  badRequest(response?: any): HttpResponse;
+  notFound(response?: any): HttpResponse;
+  serverError(error?: any): HttpResponse;
 }
 
 
