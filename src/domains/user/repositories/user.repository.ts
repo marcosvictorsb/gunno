@@ -2,6 +2,7 @@ import { UserModel } from '../model/user.model';
 import { UserEntity } from '../entities/user.entity';
 import { ModelStatic, Op } from 'sequelize';
 import { DeleteCriteria, FindCriteria, IUserRepository, UpdateCriteria, UserRepositoryParams } from '../interfaces/user.interface';
+import { InsertUserCriteria } from '../interfaces';
 
 export class UserRepository implements IUserRepository  {
   protected model: ModelStatic<UserModel> ;
@@ -28,13 +29,14 @@ export class UserRepository implements IUserRepository  {
     return whereConditions;
   }
 
-  public async create(user: { email: string; password: string }): Promise<UserEntity> {
+  public async create(user: InsertUserCriteria): Promise<UserEntity> {
     const createdUser = await this.model.create(user);
     return new UserEntity(
       createdUser.id,
       createdUser.uuid,
       createdUser.email,
       createdUser.password,
+      createdUser.id_company,
       createdUser.created_at,
       createdUser.updated_at,
     );;
@@ -53,7 +55,8 @@ export class UserRepository implements IUserRepository  {
       user.email,
       user.uuid,
       user.password,
-      user?.created_at,
+      user.id_company,
+      user.created_at,
       user.updated_at,
     );
   }
@@ -65,9 +68,11 @@ export class UserRepository implements IUserRepository  {
         new UserEntity(
           user.id,
           user.email,
+          user.uuid,
           user.password,
-          user.createdAt,
-          user.updatedAt,
+          user.id_company,
+          user.created_at,
+          user.updated_at,
         ),
     );
   }
@@ -84,6 +89,7 @@ export class UserRepository implements IUserRepository  {
       updatedUser.uuid,
       updatedUser.email,
       updatedUser.password,
+      updatedUser.id_company,
       updatedUser.created_at,
       updatedUser.updated_at,
     );

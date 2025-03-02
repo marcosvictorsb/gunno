@@ -54,7 +54,7 @@ export class Presenter implements IPresenter{
   created(response: any): HttpResponse {
     return {
       status: HttpStatusCode.Created,
-      body: [response] ,
+      body: response,
     };
   }
 

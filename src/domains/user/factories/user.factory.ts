@@ -7,7 +7,7 @@ import { EncryptionAdapter } from '../adapter/encryption.adapter';
 import { TokenAdapter } from '../adapter/token.adapter';
  import { UserModel } from '../model/user.model';
 import { UserGatewayParams } from '../interfaces/user.interface';
-import { UserController } from '../controller/user.controllers';
+import { UserController } from '../controllers/user.controller';
 import { Presenter } from '../../../protocols/presenter';
 
 // Configuração do repositório

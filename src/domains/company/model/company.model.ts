@@ -1,18 +1,16 @@
 import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import mysql from '../../../infra/database/connection/mysql';
 
-class UserModel extends Model {
+class CompanyModel extends Model {
   id!: number;
   uuid!: string;
   name!: string;
-  email!: string;
-  password!: string;
+  domain!: string;
   created_at!: Date;
   updated_at!: Date;
-  id_company!: number;
 }
 
-UserModel.init(
+CompanyModel.init(
   {
     id: {
       allowNull: false,
@@ -27,19 +25,11 @@ UserModel.init(
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
-    email: {
+    domain: {
       type: DataTypes.STRING,
-    },
-    password: {
-      type: DataTypes.STRING,
-    },
-    id_company: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'companies',
-        key: 'id'
-      }
+      allowNull: false,
     },
     created_at: {
       allowNull: false,
@@ -47,17 +37,22 @@ UserModel.init(
       defaultValue: DataTypes.NOW,
     },
     updated_at: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
+    },
+    deleted_at: {
+      allowNull: true,
+      type: DataTypes.DATE,
     },
   },
   {
     sequelize: mysql,
-    tableName: 'users',
+    tableName: 'companies',
     timestamps: true,
     underscored: true,
+    paranoid: true,
   }
 );
 
-export { UserModel };
+export { CompanyModel };
