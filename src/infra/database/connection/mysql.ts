@@ -17,6 +17,7 @@ logger.info('BANCO DE DADOS --> DESENVOLVIMENTO');
 sequelize = new Sequelize(dbName, dbUser, dbPassword, {
   dialect: dialect as any, 
   host,
+  logging: (msg) => logger.info(msg),
 });
 
 export default sequelize;

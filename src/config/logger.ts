@@ -1,6 +1,7 @@
 import { createLogger, format, transports, Logger } from 'winston';
 import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
+import { asyncMiddleware, getRequestContext } from './asyncContext';
 
 const logLevels: Record<string, number> = {
   fatal: 0,
@@ -14,12 +15,13 @@ const logLevels: Record<string, number> = {
 const logFormat = format.combine(
   format.colorize(),
   format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
-  format.printf(({ timestamp, level, message, request_id, method, path, status, duration, ...meta }) => {
+  format.printf(({ timestamp, level, message, request_id, status, duration, ...meta }) => {
     const cleanLevel = level.replace(/\u001b\[[0-9;]*m/g, '');
+    const { requestId, method, path } = getRequestContext();
     const logObject = {
       timestamp,
       level: cleanLevel,
-      request_id,
+      request_id: requestId,
       method,
       path,
       status,
