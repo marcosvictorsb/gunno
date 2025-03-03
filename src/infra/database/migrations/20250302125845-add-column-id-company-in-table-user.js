@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn('users', 'id_company', {
       type: Sequelize.INTEGER,
-      before: 'created_at'      
+      before: 'created_at',            
     })
 
     await queryInterface.addConstraint('users', {
