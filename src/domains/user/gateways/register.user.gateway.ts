@@ -1,16 +1,20 @@
 import { UserEntity } from '../entities/user.entity';
 import { FindCompanyCriteria, InsertUserCriteria, IRegisterUserGateway, IRegisterUserRepositories, RegisterUserAdapters, RegisterUserGatewayDependencies } from '../interfaces';
 import { CompanyEntity } from '../../company/entities/company.entity';
-import { LoggerService } from '../../../services/logger.services';
+import { LoggerMixin, TransactionMixin } from '../../../services/';
 import { InsertCompany } from '../../../domains/company/interfaces/company.interface';
 
 
-export class RegisterUserGateway extends LoggerService implements IRegisterUserGateway {
+class BaseGateway { constructor(...args: any[]) {} }
+const MixedGateway = LoggerMixin(TransactionMixin(BaseGateway))
+
+
+export class RegisterUserGateway extends MixedGateway implements IRegisterUserGateway {
   repositories: IRegisterUserRepositories;
   adapters: RegisterUserAdapters
 
   constructor(params: RegisterUserGatewayDependencies) {
-    super(params);
+    super(params)
     this.repositories = params.repositories;
     this.adapters = params.adapters
   }

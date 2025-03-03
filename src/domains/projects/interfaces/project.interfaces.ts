@@ -3,7 +3,7 @@ import { ProjectEntity } from "../entities/project.entity";
 import ProjectModel from "../model/project.model";
 import { HttpResponse } from "../../../protocols/presenter";
 import logger from "../../../config/logger";
-import { ILoggerService } from "../../../services/logger.services";
+import { ILoggerMixin } from "../../../services/logger.service";
 
 export type ProjectInput = {
   name: string,
@@ -47,7 +47,7 @@ export type ProjectGatewayDependencies = {
   logger: typeof logger
 }
 
-export interface IProjectGateway extends ILoggerService {
+export interface IProjectGateway extends ILoggerMixin {
   createProject(project: InsertCriteria): Promise<ProjectEntity>;
   getProjects(): Promise<ProjectEntity[]>;
   deleteProject(id: number): Promise<boolean>;

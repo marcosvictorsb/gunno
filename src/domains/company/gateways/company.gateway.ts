@@ -1,12 +1,16 @@
-import { LoggerService } from '../../../services/logger.services';
+import { LoggerMixin } from '../../../services/';
 import { CompanyEntity } from '../entities/company.entity';
 import { InsertCompany, ICompanyGateway, ICompanyRepository, CompanyGatewayDependencies } from '../interfaces/company.interface';
 
-export class CompanyGateway extends LoggerService implements ICompanyGateway  {
+class BaseGateway { constructor(...args: any[]) {} }
+const MixedGateway = LoggerMixin(BaseGateway);
+
+
+export class CompanyGateway extends MixedGateway implements ICompanyGateway  {
   companyRepository: ICompanyRepository;
 
   constructor(params: CompanyGatewayDependencies) {
-    super(params);
+    super();
     this.companyRepository = params.repository;
   }
 

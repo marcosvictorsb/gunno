@@ -3,7 +3,7 @@ import { CompanyEntity } from '../entities/company.entity';
 import { CompanyModel } from '../model/company.model';
 import { HttpResponse } from '../../../protocols/presenter';
 import logger from '../../../config/logger';
-import { ILoggerService } from '../../../services/logger.services';
+import { ILoggerMixin } from '../../../services/';
 
 export type CompanyInput = {
   
@@ -45,7 +45,7 @@ export type CompanyGatewayDependencies = {
   logger: typeof logger
 }
 
-export interface ICompanyGateway extends ILoggerService {
+export interface ICompanyGateway extends ILoggerMixin {
   createCompany(company: InsertCompany): Promise<CompanyEntity>;
 }
 

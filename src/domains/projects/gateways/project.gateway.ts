@@ -1,10 +1,12 @@
 
-import { LoggerService } from "../../../services/logger.services";
+import { LoggerMixin } from "../../../services";
 import { ProjectEntity } from "../entities/project.entity";
 import { InsertCriteria, IProjectGateway, IProjectRepository, ProjectGatewayDependencies } from "../interfaces/project.interfaces";
 
+class BaseGateway { constructor(...args: any[]) {} }
+const MixedGateway = LoggerMixin(BaseGateway);
 
-export class ProjectGateway extends LoggerService implements IProjectGateway  {
+export class ProjectGateway extends MixedGateway implements IProjectGateway  {
   projectRepository: IProjectRepository;
 
   constructor(params: ProjectGatewayDependencies) {

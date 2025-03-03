@@ -6,9 +6,10 @@ import { CreateUserUseCase } from '../use-cases/create.user.usecase';
 import { CompanyEntity } from '../../../domains/company/entities/company.entity';
 import { IUserRepository } from './user.interface';
 import { RegisterUserUseCase } from '../use-cases/register.user.usecase';
-import { LoggerService } from '../../../services/logger.services';
+import { ILoggerMixin, ITransactionMixin, LoggerMixin } from '../../../services/';
 import logger from '../../../config/logger';
 import { ICompanyRepository, InsertCompany } from '../../../domains/company/interfaces/company.interface';
+
 
 
 export type RegisterUserInput = {
@@ -61,7 +62,8 @@ export interface IRegisterUserRepository {
   find(criteria: FindRegisterUserCriteria): Promise<UserEntity | null>;
 }
 
-export interface IRegisterUserGateway extends LoggerService{
+
+export interface IRegisterUserGateway extends ILoggerMixin, ITransactionMixin {
   findUserByEmail(email: string): Promise<UserEntity | null>;
   findCompany(criteria: FindCompanyCriteria): Promise<CompanyEntity | null>;
   createUser(criteria: InsertUserCriteria): Promise<UserEntity>
