@@ -16,6 +16,14 @@ export class CompanyRepository implements ICompanyRepository  {
     if (criteria.id) {
       whereConditions['id'] = criteria.id;
     }
+
+    if (criteria.name) {
+      whereConditions['name'] = criteria.name;
+    }
+
+    if (criteria.domain) {
+      whereConditions['domain'] = criteria.domain;
+    }
     
     return whereConditions;
   }

@@ -25,7 +25,7 @@ export class RegisterUserUseCase {
       }
 
       const existingCompany = await this.gateway.findCompany(findCompanyCriteria);
-      if(!existingCompany) {
+      if(existingCompany) {
         this.gateway.loggerInfo('Empresa já cadastrada', {
           domain: input.companyDomain,
           name: input.companyName
