@@ -1,7 +1,7 @@
 import { ModelStatic } from 'sequelize';
 import { CompanyEntity } from '../entities/company.entity';
 import { CompanyModel } from '../model/company.model';
-import { HttpResponse } from '../../../protocols/presenter';
+import { HttpResponse } from '../../../protocols/';
 import logger from '../../../config/logger';
 import { ILoggerMixin } from '../../../services/';
 

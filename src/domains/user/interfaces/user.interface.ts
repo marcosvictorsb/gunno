@@ -1,5 +1,5 @@
 import { ModelStatic } from 'sequelize';
-import { UserEntity as User } from '../entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import { UserModel } from '../model/user.model';
 import { IEncryption } from '../adapter/encryption.adapter';
 import logger from '../../../config/logger';
@@ -24,7 +24,7 @@ export type UserRepositoryParams = {
 }
 
 export type IToken = { 
-  sign(user: User, secret: string, options: any): string;
+  sign(user: UserEntity, secret: string, options: any): string;
 }
 
 export type UserGatewayParams = {
@@ -43,18 +43,18 @@ export interface UserControllerParams {
 }
 
 export interface IUserGateway {
-  createUser(user: { email: string; password: string }): Promise<User>;
-  findUserByEmail(email: string): Promise<User | null>;
-  getAllUsers(): Promise<User[]>;
+  createUser(user: { email: string; password: string }): Promise<UserEntity>;
+  findUserByEmail(email: string): Promise<UserEntity | null>;
+  getAllUsers(): Promise<UserEntity[]>;
   // comparePasswords(plain: string, hashed: string): boolean;
   loggerInfo(message: string, data: any): any;
 }
 
 export interface IUserRepository {
-  create(user: { email: string; password: string }): Promise<User>;
-  find(criteria: FindCriteria): Promise<User | null>;
-  findAll(): Promise<User[]>;
-  update(criteria: UpdateCriteria, data: Partial<User>): Promise<User | null>;
+  create(user: { email: string; password: string }): Promise<UserEntity>;
+  find(criteria: FindCriteria): Promise<UserEntity | null>;
+  findAll(): Promise<UserEntity[]>;
+  update(criteria: UpdateCriteria, data: Partial<UserEntity>): Promise<UserEntity | null>;
   delete(criteria: DeleteCriteria): Promise<boolean>;
 }
 

@@ -1,4 +1,4 @@
-import { IPresenter, HttpResponse } from "../../../protocols/presenter";
+import { IPresenter, HttpResponse } from "../../../protocols/";
 import { IProjectGateway } from "../interfaces/project.interfaces";
 
 export class GetProjectsUseCase {

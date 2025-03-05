@@ -34,11 +34,12 @@ export class UserRepository implements IUserRepository  {
     return new UserEntity(
       createdUser.id,
       createdUser.uuid,
-      createdUser.email,
+      createdUser.name,
+      createdUser.email,      
       createdUser.password,
-      createdUser.id_company,
       createdUser.created_at,
       createdUser.updated_at,
+      createdUser.id_company
     );;
   }
 
@@ -52,12 +53,13 @@ export class UserRepository implements IUserRepository  {
 
     return new UserEntity(
       user.id,
-      user.email,
       user.uuid,
+      user.name,
+      user.email,      
       user.password,
-      user.id_company,
       user.created_at,
       user.updated_at,
+      user.id_company
     );
   }
 
@@ -67,12 +69,13 @@ export class UserRepository implements IUserRepository  {
       (user: any) =>
         new UserEntity(
           user.id,
-          user.email,
           user.uuid,
+          user.name,
+          user.email,      
           user.password,
-          user.id_company,
           user.created_at,
           user.updated_at,
+          user.id_company
         ),
     );
   }
@@ -87,11 +90,12 @@ export class UserRepository implements IUserRepository  {
     return new UserEntity(
       updatedUser.id,
       updatedUser.uuid,
-      updatedUser.email,
+      updatedUser.name,
+      updatedUser.email,      
       updatedUser.password,
-      updatedUser.id_company,
       updatedUser.created_at,
       updatedUser.updated_at,
+      updatedUser.id_company
     );
   }
 

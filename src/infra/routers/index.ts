@@ -1,6 +1,6 @@
 import { Router } from "express";
 import healthRoutes from "../../domains/health/routes";
-import authenticationRoutes from "../../domains/authentication1/routes"
+import authenticationRoutes from "../../domains/authentication/routes"
 import userRoutes from "../../domains/user/routes"
 import projectRoutes from "../../domains/projects/routes"
 

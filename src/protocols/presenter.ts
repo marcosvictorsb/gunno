@@ -1,3 +1,5 @@
+import { HttpResponse } from "./http";
+
 export const HttpStatusCode = {
   OK: 200,
   Created: 201,
@@ -11,12 +13,6 @@ export const HttpStatusCode = {
   Conflict: 409,
   ServerError: 500,
 } as const;
-
-export type HttpResponse = {
-  status: number;
-  body: any;
-};
-
 
 export interface IPresenter {
   OK(response?: any): HttpResponse;
