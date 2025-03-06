@@ -1,9 +1,9 @@
 import { IPresenter } from "../../../protocols/presenter";
 import { HttpResponse } from '../../../protocols/http';
-import { IProjectGateway } from "../interfaces/project.interfaces";
+import { IDeleteProjectGateway } from "../interfaces/";
 
 export class DeleteProjectUseCase {
-  constructor(private readonly gateway: IProjectGateway, private presenter: IPresenter) {}
+  constructor(private readonly gateway: IDeleteProjectGateway, private presenter: IPresenter) {}
   
   async execute(id: number): Promise<HttpResponse> {
     try {

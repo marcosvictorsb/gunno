@@ -1,6 +1,6 @@
 import { ModelStatic } from "sequelize";
 import ProjectModel from "../model/project.model";
-import { DeleteCriteria, FindCriteria, InsertCriteria, IProjectRepository, ProjectRepositoryDependencies, UpdateCriteria } from "../interfaces/project.interfaces";
+import { FindCriteria, InsertCriteria, IProjectRepository, ProjectRepositoryDependencies } from "../interfaces";
 import { ProjectEntity } from "../entities/project.entity";
 
 export class ProjectRepository implements IProjectRepository  {

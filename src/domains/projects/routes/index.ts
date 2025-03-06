@@ -1,14 +1,14 @@
-import { Express, Request, Response, NextFunction, Router } from 'express';
-import { projectController } from '../factories/project.factory';
+import { Request, Response, Router } from 'express';
+import { getProjectController, deleteProjectController, createProjectController } from '../factories/';
+import { authMiddleware } from './../../../middlewares/auth'
 
 
 const router = Router();
 
 
-router
-  .post("/", (request: Request, response: Response) => projectController.create(request, response))
-  .get("/", (request: Request, response: Response) => projectController.getProjects(request, response))
-  .delete("/:id", (request: Request, response: Response) => projectController.deleteProject(request, response));
+router.post("/", authMiddleware, (request: Request, response: Response) => createProjectController.create(request, response))
+router.get("/", authMiddleware, (request: Request, response: Response) => getProjectController.getProjects(request, response))
+router.delete("/:id", authMiddleware, (request: Request, response: Response) => deleteProjectController.deleteProject(request, response));
 
 
 export default router;

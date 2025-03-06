@@ -1,15 +1,15 @@
 
 import { LoggerMixin } from "../../../services";
 import { ProjectEntity } from "../entities/project.entity";
-import { InsertCriteria, IProjectGateway, IProjectRepository, ProjectGatewayDependencies } from "../interfaces/project.interfaces";
+import { InsertCriteria, IDeleteProjectGateway, IProjectRepository, DeleteProjectGatewayDependencies } from "../interfaces";
 
 class BaseGateway { constructor(...args: any[]) {} }
 const MixedGateway = LoggerMixin(BaseGateway);
 
-export class ProjectGateway extends MixedGateway implements IProjectGateway  {
+export class DeleteProjectGateway extends MixedGateway implements IDeleteProjectGateway  {
   projectRepository: IProjectRepository;
 
-  constructor(params: ProjectGatewayDependencies) {
+  constructor(params: DeleteProjectGatewayDependencies) {
     super(params);
     this.projectRepository = params.repository;
   }  

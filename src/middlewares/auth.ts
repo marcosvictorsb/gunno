@@ -3,11 +3,11 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 
-interface CustomRequest extends Request {
+interface AuthenticatedRequest extends Request {
   userId?: string;
 }
 
-export const authMiddleware = (request: CustomRequest, response: Response, next: NextFunction) => {
+export const authMiddleware = (request: AuthenticatedRequest, response: Response, next: NextFunction) => {
   try {
     const authHeader = request.header('authorization');
     if (!authHeader) return response.status(401).json({ error: 'No token provided' });

@@ -1,8 +1,8 @@
 import { IPresenter, HttpResponse } from "../../../protocols/";
-import { IProjectGateway } from "../interfaces/project.interfaces";
+import { IGetProjectGateway } from "../interfaces/";
 
 export class GetProjectsUseCase {
-  constructor(private readonly gateway: IProjectGateway, private presenter: IPresenter) {}
+  constructor(private readonly gateway: IGetProjectGateway, private presenter: IPresenter) {}
     
   async execute(): Promise<HttpResponse> {
     try {

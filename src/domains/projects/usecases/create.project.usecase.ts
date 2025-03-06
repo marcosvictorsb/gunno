@@ -1,9 +1,9 @@
-import { InsertCriteria, IProjectGateway, ProjectInput } from '../interfaces/project.interfaces';
+import { InsertCriteria, ICreateProjectGateway, ProjectInput } from '../interfaces/';
 import { IPresenter } from '../../../protocols/presenter';
 import { HttpResponse } from '../../../protocols/http';
 
 export class CreateProjectUseCase {
-  constructor(private readonly gateway: IProjectGateway, private presenter: IPresenter) {}
+  constructor(private readonly gateway: ICreateProjectGateway, private presenter: IPresenter) {}
 
   async execute(input: ProjectInput): Promise<HttpResponse> {
     this.gateway.loggerInfo('Creating projeto', { input });
