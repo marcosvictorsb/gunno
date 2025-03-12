@@ -26,7 +26,6 @@ export class GetTokenUseCase {
       }
 
       const credential = this.gateway.sign(user);
-      console.log(user)
       return this.presenter.OK({name: user.name, email: user.email, token: credential});
       
     } catch (error) {

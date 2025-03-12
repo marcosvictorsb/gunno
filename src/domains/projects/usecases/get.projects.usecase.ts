@@ -4,11 +4,11 @@ import { IGetProjectGateway } from "../interfaces/";
 export class GetProjectsUseCase {
   constructor(private readonly gateway: IGetProjectGateway, private presenter: IPresenter) {}
     
-  async execute(): Promise<HttpResponse> {
+  async execute(idUser: number): Promise<HttpResponse> {
     try {
       this.gateway.loggerInfo('Getting projects');
 
-      const projects = await this.gateway.getProjects();
+      const projects = await this.gateway.getProjects(idUser);
       if(!projects) {
         this.gateway.loggerInfo('Erro ao buscar projects');
         return this.presenter.serverError('Erro ao buscar projects');

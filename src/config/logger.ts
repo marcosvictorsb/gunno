@@ -1,7 +1,6 @@
 import { createLogger, format, transports, Logger } from 'winston';
 import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { asyncMiddleware, getRequestContext } from './asyncContext';
 
 const logLevels: Record<string, number> = {
   fatal: 0,
@@ -15,13 +14,12 @@ const logLevels: Record<string, number> = {
 const logFormat = format.combine(
   format.colorize(),
   format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
-  format.printf(({ timestamp, level, message, request_id, status, duration, ...meta }) => {
+  format.printf(({ timestamp, level, message, request_id, status, duration, method, path, ...meta }) => {
     const cleanLevel = level.replace(/\u001b\[[0-9;]*m/g, '');
-    const { requestId, method, path } = getRequestContext();
     const logObject = {
       timestamp,
       level: cleanLevel,
-      request_id: requestId,
+      request_id,
       method,
       path,
       status,
@@ -39,6 +37,7 @@ const logger: Logger = createLogger({
   transports: [new transports.Console()],
 });
 
+
 export const setupRequestLogging = (request: Request, response: Response, next: NextFunction) => {
   const requestId = uuidv4();
   request.headers['x-request-id'] = requestId;
@@ -50,9 +49,6 @@ export const setupRequestLogging = (request: Request, response: Response, next: 
     method: request.method,
     path: request.url,
   });
-
-  // Log de diagnóstico para verificar se a execução chega até aqui
-  logger.debug(`Request processing started for ${request.method} ${request.url}`);
 
   response.on('finish', () => {
     const duration = `${Date.now() - start}ms`;

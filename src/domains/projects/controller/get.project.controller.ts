@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response, Request } from 'express';
 import { GetProjectControllerDependencies, IGetProjectUseCases } from '../interfaces/';
 
 export class GetProjectController {
@@ -8,8 +8,9 @@ export class GetProjectController {
     this.getProjectUseCase = params.getProjectUseCase;
   }
 
-  public async getProjects(request: Request, response: Response): Promise<Response> {  
-    const result = await this.getProjectUseCase.execute();
+  public async getProjects(request: Request, response: Response): Promise<Response> { 
+    const idUser = Number(request?.id_user)
+    const result = await this.getProjectUseCase.execute(idUser);
     return response.status(result.status).json(result.body);   
   }
 }

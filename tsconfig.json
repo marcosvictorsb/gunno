@@ -9,11 +9,10 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "*": ["node_modules/*", "src/types/*"],
-      "@domains/*": ["src/domains/*"],
-      "@infra/*": ["./src/infra/*"],
-    }
+      "*": ["node_modules/*", "src/@types/*"],
+    },
+   "typeRoots" : ["./node_modules/@types", "./src/@types"],
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/@types/**/*", "*.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,13 +1,9 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response, Request } from "express";
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 
-interface AuthenticatedRequest extends Request {
-  userId?: string;
-}
-
-export const authMiddleware = (request: AuthenticatedRequest, response: Response, next: NextFunction) => {
+export const authMiddleware = (request: Request, response: Response, next: NextFunction) => {
   try {
     const authHeader = request.header('authorization');
     if (!authHeader) return response.status(401).json({ error: 'No token provided' });
@@ -20,7 +16,7 @@ export const authMiddleware = (request: AuthenticatedRequest, response: Response
 
     jwt.verify(token, process.env.JWT_SECRET_SIGN, (error: any, decode: { id: any; }) => {
       if (error) return response.status(401).json({ error: 'Token invalid' });
-      request.userId = decode.id;
+      request.id_user = decode.id;
       return next();
     });
   } catch (error) {

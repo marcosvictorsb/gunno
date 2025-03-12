@@ -16,7 +16,7 @@ export type GetProjectRepositoryDependencies = {
 }
 
 export type IGetProjectUseCases = {
-  execute(): Promise<HttpResponse>
+  execute(idUser: number): Promise<HttpResponse>
 }
 
 export type GetProjectControllerDependencies = {
@@ -29,5 +29,5 @@ export type GetProjectGatewayDependencies = {
 }
 
 export interface IGetProjectGateway extends ILoggerMixin {
-  getProjects(): Promise<ProjectEntity[]>;
+  getProjects(idUser: number): Promise<ProjectEntity[]>;
 }
